@@ -136,6 +136,15 @@
             </div>
           </div>
         </div>
+
+        <!-- Bouton En savoir plus -->
+        <div class="text-center mt-12">
+          <a href="/biographie"
+            class="inline-flex items-center px-8 py-4 bg-indigo-600 hover:bg-indigo-700 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg group">
+            <span>En savoir plus</span>
+            <i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
       </div>
     </section>
 
