@@ -5,12 +5,14 @@
       <slot />
     </main>
     <Footer />
+    <FlashMessage />
   </div>
 </template>
 
 <script setup>
 import Header from '../../Client/Components/Header.vue';
 import Footer from '../../Client/Components/Footer.vue';
+import FlashMessage from '@/Components/FlashMessage.vue';
 </script>
 
 <style>

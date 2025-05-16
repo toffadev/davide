@@ -41,6 +41,10 @@ class HandleInertiaRequests extends Middleware
                 'defaults' => [],
                 'routes' => fn() => Route::getRoutes()->getRoutesByName(),
             ],
+            'flash' => [
+                'error' => fn() => $request->session()->get('error'),
+                'notification' => fn() => $request->session()->get('notification'),
+            ],
         ];
     }
 }

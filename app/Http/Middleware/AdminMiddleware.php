@@ -13,8 +13,22 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Puisque seuls les administrateurs peuvent s'inscrire,
-        // nous considérons que tous les utilisateurs authentifiés sont des administrateurs
+        if (!$request->user()) {
+            return redirect()->route('admin.login');
+        }
+
+        if (!$request->user()->isAdmin()) {
+            if ($request->wantsJson()) {
+                return response()->json(['message' => 'Accès non autorisé. Veuillez contacter l\'administrateur.'], 403);
+            }
+            return redirect('/')
+                ->with('error', 'Accès non autorisé. Veuillez contacter l\'administrateur pour obtenir les droits d\'accès.')
+                ->with('notification', [
+                    'type' => 'error',
+                    'message' => 'Accès non autorisé. Veuillez contacter l\'administrateur pour obtenir les droits d\'accès.'
+                ]);
+        }
+
         return $next($request);
     }
 }

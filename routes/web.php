@@ -53,7 +53,7 @@ Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])
 */
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/', function () {
             return Inertia::render('Dashboard');
         })->name('dashboard');
