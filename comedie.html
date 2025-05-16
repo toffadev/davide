@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axel Meryl - Comédie</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #f59e0b, #ef4444);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .comedy-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .comedy-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-thumbnail::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            border-radius: 0.5rem;
+        }
+        
+        .scene-number {
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            width: 40px;
+            height: 40px;
+            background: #f59e0b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-gray-900 bg-opacity-90 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0">
+                        <span class="text-2xl font-bold gradient-text">AXEL MERYL</span>
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="index.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Accueil</a>
+                        <a href="biographie.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Biographie</a>
+                        <a href="musique.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Musique</a>
+                        <a href="comedie.html" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-800 transition">Comédie</a>
+                        <a href="actualites.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Actualités</a>
+                        <a href="contact.html" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Accueil</a>
+                <a href="biographie.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Biographie</a>
+                <a href="musique.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Musique</a>
+                <a href="comedie.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-700">Comédie</a>
+                <a href="actualites.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Actualités</a>
+                <a href="contact.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-amber-900 to-gray-900">
+        <div class="max-w-7xl mx-auto text-center animate-fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">L'Art de la <span class="gradient-text">Comédie</span></h1>
+            <h2 class="text-xl md:text-2xl text-gray-300 mb-6">Découvrez le talent scénique et humoristique d'Axel Meryl</h2>
+            <div class="flex justify-center space-x-4">
+                <a href="#spectacles" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 rounded-full font-medium transition shadow-lg flex items-center">
+                    <i class="fas fa-theater-masks mr-2"></i> Spectacles
+                </a>
+                <a href="#sketches" class="px-6 py-3 bg-red-600 hover:bg-red-700 rounded-full font-medium transition shadow-lg flex items-center">
+                    <i class="fas fa-video mr-2"></i> Sketches
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spectacles Section -->
+    <section id="spectacles" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center">
+                    <i class="fas fa-theater-masks text-amber-500 mr-3 text-4xl"></i>
+                    <span>Spectacles Vivants</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Axel Meryl sur scène : une énergie communicative et un humour décapant qui ont conquis le public.</p>
+            </div>
+            
+            <!-- Current Show -->
+            <div class="mb-20 animate-fade-in delay-1">
+                <h3 class="text-2xl font-semibold mb-6 text-amber-400">Spectacle Actuel</h3>
+                <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-2xl md:flex">
+                    <div class="md:w-1/3 relative">
+                        <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Spectacle cover" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <div class="bg-amber-500 hover:bg-amber-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg">
+                                <i class="fas fa-play text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-2xl font-bold mb-1">Dérèglement Comique</h4>
+                                <p class="text-gray-400">One-man-show • Depuis 2021</p>
+                            </div>
+                            <span class="bg-amber-600 text-white text-sm px-3 py-1 rounded-full">En tournée</span>
+                        </div>
+                        <p class="text-gray-300 mb-6">"Dérèglement Comique" est un spectacle où Axel Meryl explore avec finesse et autodérision les absurdités du quotidien. Entre stand-up et saynètes théâtralisées, il offre 90 minutes d'un humour intelligent et décalé.</p>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-center text-sm text-gray-400 mb-2">
+                                <i class="fas fa-map-marker-alt mr-2 text-amber-400"></i>
+                                <span>Actuellement en tournée dans toute la France</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-400">
+                                <i class="fas fa-calendar-alt mr-2 text-amber-400"></i>
+                                <span>Prochaines dates : Paris (15/09), Lyon (22/09), Marseille (29/09)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                            <div>
+                                <p class="text-gray-400 text-sm">Durée</p>
+                                <p class="text-xl font-bold">90 min</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Salles</p>
+                                <p class="text-xl font-bold">50+</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Spectateurs</p>
+                                <p class="text-xl font-bold">25K+</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <a href="#" class="px-6 py-3 bg-amber-600 hover:bg-amber-700 rounded-full font-medium transition shadow-lg flex items-center">
+                                <i class="fas fa-ticket-alt mr-2"></i> Réserver
+                            </a>
+                            <a href="#" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-full font-medium transition shadow-lg">
+                                Voir toutes les dates
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Previous Shows -->
+            <div class="animate-fade-in delay-2">
+                <h3 class="text-2xl font-semibold mb-6 text-amber-400">Spectacles Passés</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Show 1 -->
+                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg comedy-card">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Show cover" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition">
+                                <div class="bg-amber-500 hover:bg-amber-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-lg">Le Syndrome du Panda</h4>
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">2018-2020</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-3">One-man-show • 1h30</p>
+                            <p class="text-gray-300 text-sm line-clamp-2">Un spectacle sur les contradictions de la vie moderne, où Axel Meryl incarne avec brio une galerie de personnages hauts en couleur.</p>
+                            <div class="mt-4 flex justify-between items-center text-sm">
+                                <span class="text-amber-400">75 représentations</span>
+                                <span class="text-gray-500">15K spectateurs</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Show 2 -->
+                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg comedy-card">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Show cover" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition">
+                                <div class="bg-amber-500 hover:bg-amber-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-lg">Improvisations Délirantes</h4>
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">2016-2018</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-3">Match d'impro • 2h</p>
+                            <p class="text-gray-300 text-sm line-clamp-2">En collaboration avec la troupe "Les Déjantés", Axel a montré son talent pour l'improvisation dans des matchs endiablés.</p>
+                            <div class="mt-4 flex justify-between items-center text-sm">
+                                <span class="text-amber-400">40 représentations</span>
+                                <span class="text-gray-500">8K spectateurs</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Show 3 -->
+                    <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg comedy-card">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                                 alt="Show cover" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition">
+                                <div class="bg-amber-500 hover:bg-amber-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-lg">Premiers Rires</h4>
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-1 rounded">2014-2016</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-3">Stand-up • 1h</p>
+                            <p class="text-gray-300 text-sm line-clamp-2">Le premier one-man-show d'Axel Meryl, où il a forgé son style entre observation sociale et autodérision.</p>
+                            <div class="mt-4 flex justify-between items-center text-sm">
+                                <span class="text-amber-400">30 représentations</span>
+                                <span class="text-gray-500">5K spectateurs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sketches Section -->
+    <section id="sketches" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center">
+                    <i class="fas fa-video text-red-500 mr-3 text-4xl"></i>
+                    <span>Sketches & Scènes Cultes</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Retrouvez les meilleurs moments comiques d'Axel Meryl, des sketches qui ont marqué le public.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sketch 1 -->
+                <div class="relative animate-fade-in delay-1">
+                    <div class="scene-number">1</div>
+                    <div class="bg-gray-700 rounded-lg overflow-hidden shadow-lg comedy-card h-full">
+                        <div class="relative video-thumbnail pb-[56.25%]">
+                            <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Sketch thumbnail" 
+                                 class="absolute h-full w-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <span class="bg-red-600 text-white text-xs px-2 py-1 rounded">VIRAL</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg mb-2">L'Entretien d'Embauche</h4>
+                            <div class="flex justify-between text-sm text-gray-400 mb-3">
+                                <span>2.4M vues</span>
+                                <span>4:32</span>
+                            </div>
+                            <p class="text-gray-300 text-sm">Le sketch culte où Axel incarne un candidat totalement inadapté à tous les postes. Un classique de son répertoire.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-gray-600 text-gray-200 rounded-full text-xs">Employé modèle</span>
+                                <span class="px-2 py-1 bg-gray-600 text-gray-200 rounded-full text-xs">RH</span>
+                                <span class="px-2 py-1 bg-gray-600 text-gray-200 rounded-full text-xs">Absurdité</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sketch 2 -->
+                <div class="relative animate-fade-in delay-2">
+                    <div class="scene-number">2</div>
+                    <div class="bg-gray-700 rounded-lg overflow-hidden shadow-lg comedy-card h-full">
+                        <div class="relative video-thumbnail pb-[56.25%]">
+                            <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Sketch thumbnail" 
+                                 class="absolute h-full w-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded">SCÈNE</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg mb-2">Le Client du Siècle</h4>
+                            <div class="flex justify-between text-sm text-gray-400 mb-3">
+                                <span>1.1M vues</span>
+                                <span>5:15</span>
+                            </div>
+                            <p class="text-gray-300 text-sm">Dans un restaurant, un client particulièrement exigeant pousse le serveur à bout. Du grand art comique.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-gray-600 text-gray-200 rounded-full text-xs">Service</span>
+                                <span class="px-2 py-1 bg-gray-600 text-gray-200 rounded-full text-xs">Restauration</span>
+                                <span class="px-2 py-1 bg-gray-600 text-gray-200 rounded-full text-xs">Dialogue</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sketch 3 -->
+                <div class="relative animate-fade-in delay-3">
+                    <div class="scene-number">3</div>
+                    <div class="bg-gray-700 rounded-lg overflow-hidden shadow-lg comedy-card h-full">
+                        <div class="relative video-thumbnail pb-[56.25%]">
+                            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Sketch thumbnail" 
+                                 class="absolute h-full w-full object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="bg-red-600 hover:bg-red-700 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <span class="bg-purple-600 text-white text-xs px-2 py-1 rounded">PARODIE</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="font-bold text-lg mb-2">Star Wars: La Version Café</h4>
+                            <div class="flex justify-between text-sm text-gray-400 mb-3">
+                                <span>3.7M vues</span>
+                                <span>6:48</span>
+                            </div>
+                            <p class="text-gray-300 text-sm">Une parodie hilarante de Star Wars transposée dans un bureau, où Dark Vador est le patron et les stormtroopers des stagiaires.</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-gray-600 text-gray-200 rounded-full text-xs">Parodie</span>
+                                <span class="px-2 py-1 bg-gray-600 text-gray-200 rounded-full text-xs">SF</span>
+                                <span class="px-2 py-1 bg-gray-600 text-gray-200 rounded-full text-xs">Bureau</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 rounded-full font-medium transition shadow-lg">
+                    <i class="fas fa-list mr-2"></i> Voir tous les sketches
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Ils parlent de <span class="gradient-text">son humour</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Ce que les critiques et le public pensent du talent comique d'Axel Meryl.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg animate-fade-in delay-1">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Critic" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Marie Lambert</h4>
+                            <p class="text-amber-400 text-sm">Le Monde du Rire</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Axel Meryl possède ce rare talent de faire rire intelligemment. Son humour, à la fois fin et décapant, sait toucher juste sans jamais tomber dans la facilité."</p>
+                    <div class="mt-4 flex">
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg animate-fade-in delay-2">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Critic" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Thomas Durand</h4>
+                            <p class="text-amber-400 text-sm">Comédie Magazine</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Une énergie scénique phénoménale ! Axel passe avec aisance du stand-up pur à des saynètes théâtralisées d'une grande précision. Un vrai caméléon du rire."</p>
+                    <div class="mt-4 flex">
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star-half-alt text-amber-400"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg animate-fade-in delay-3">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Fan" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Sophie Martin</h4>
+                            <p class="text-amber-400 text-sm">Fan depuis 2016</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Je suis allée voir ses 3 derniers spectacles et à chaque fois c'était magique. On rit du début à la fin, mais on repart aussi avec de vraies réflexions. Brillant !"</p>
+                    <div class="mt-4 flex">
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                        <i class="fas fa-star text-amber-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Performance -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-amber-900">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">Prochaine <span class="gradient-text">Représentation</span></h2>
+            
+            <div class="bg-gray-800 bg-opacity-70 rounded-2xl p-8 max-w-3xl mx-auto shadow-xl animate-fade-in delay-1">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="mb-6 md:mb-0 md:mr-8 text-center md:text-left">
+                        <div class="text-amber-400 text-lg font-semibold">15 Septembre 2023</div>
+                        <div class="text-2xl font-bold my-2">Olympia, Paris</div>
+                        <div class="text-gray-300">20h30 • Durée: 1h30</div>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <a href="#" class="px-8 py-3 bg-amber-600 hover:bg-amber-700 rounded-full font-bold transition shadow-lg flex items-center text-lg">
+                            <i class="fas fa-ticket-alt mr-2"></i> Réserver maintenant
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-700">
+                    <h3 class="text-xl font-semibold mb-4">Dérèglement Comique</h3>
+                    <p class="text-gray-300 mb-6">Le spectacle qui a conquis la France entière arrive enfin sur la scène mythique de l'Olympia. Une occasion unique de découvrir ou redécouvrir ce one-man-show culte.</p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div>
+                            <div class="text-amber-400 font-bold text-xl">50+</div>
+                            <div class="text-gray-400 text-sm">dates</div>
+                        </div>
+                        <div>
+                            <div class="text-amber-400 font-bold text-xl">25K+</div>
+                            <div class="text-gray-400 text-sm">spectateurs</div>
+                        </div>
+                        <div>
+                            <div class="text-amber-400 font-bold text-xl">4.9/5</div>
+                            <div class="text-gray-400 text-sm">moyenne</div>
+                        </div>
+                        <div>
+                            <div class="text-amber-400 font-bold text-xl">98%</div>
+                            <div class="text-gray-400 text-sm">salles pleines</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex justify-center md:justify-start mb-6 md:mb-0">
+                    <a href="index.html" class="text-2xl font-bold gradient-text">AXEL MERYL</a>
+                </div>
+                
+                <div class="flex justify-center md:justify-end space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center md:text-left">
+                <p class="text-gray-400 text-sm">&copy; 2023 Axel Meryl. Tous droits réservés.</p>
+                <p class="text-gray-500 text-xs mt-2">Site réalisé avec passion pour mettre en lumière l'artiste.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Run once on load
+        window.addEventListener('load', animateOnScroll);
+        
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
