@@ -666,12 +666,18 @@
             <!-- Content -->
             <div v-if="currentModalItem" class="bg-gray-900 rounded-lg overflow-hidden">
               <!-- Image -->
-              <img 
-                v-if="currentModalItem.type === 'image'" 
-                :src="currentModalItem.url" 
-                :alt="currentModalItem.title"
-                class="w-full max-h-[70vh] object-contain"
-              >
+              <div v-if="currentModalItem.type === 'image'" class="relative w-full h-[70vh] flex items-center justify-center bg-gray-800">
+                <img 
+                  :src="currentModalItem.thumbnail || currentModalItem.url" 
+                  :alt="currentModalItem.title"
+                  class="max-w-full max-h-full object-contain"
+                  @error="handleImageError"
+                  @load="handleImageLoad"
+                >
+                <div v-if="imageLoadError" class="absolute inset-0 flex items-center justify-center text-gray-400">
+                  <span>Impossible de charger l'image</span>
+                </div>
+              </div>
               
               <!-- Video -->
               <div v-else-if="currentModalItem.type === 'video'" class="relative w-full">
@@ -688,6 +694,9 @@
               <div class="p-6">
                 <h3 class="text-xl font-bold mb-2">{{ currentModalItem.title }}</h3>
                 <p v-if="currentModalItem.description" class="text-gray-300">{{ currentModalItem.description }}</p>
+                <p class="text-sm text-gray-400 mt-2">
+                  Source de l'image: {{ currentModalItem.thumbnail || currentModalItem.url || 'Non disponible' }}
+                </p>
               </div>
             </div>
           </div>
@@ -804,12 +813,18 @@
         <!-- Content -->
         <div v-if="currentModalItem" class="bg-gray-900 rounded-lg overflow-hidden">
           <!-- Image -->
-          <img 
-            v-if="currentModalItem.type === 'image'" 
-            :src="currentModalItem.url" 
-            :alt="currentModalItem.title"
-            class="w-full max-h-[70vh] object-contain"
-          >
+          <div v-if="currentModalItem.type === 'image'" class="relative w-full h-[70vh] flex items-center justify-center bg-gray-800">
+            <img 
+              :src="currentModalItem.thumbnail || currentModalItem.url" 
+              :alt="currentModalItem.title"
+              class="max-w-full max-h-full object-contain"
+              @error="handleImageError"
+              @load="handleImageLoad"
+            >
+            <div v-if="imageLoadError" class="absolute inset-0 flex items-center justify-center text-gray-400">
+              <span>Impossible de charger l'image</span>
+            </div>
+          </div>
           
           <!-- Video -->
           <div v-else-if="currentModalItem.type === 'video'" class="relative w-full">
@@ -826,6 +841,9 @@
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">{{ currentModalItem.title }}</h3>
             <p v-if="currentModalItem.description" class="text-gray-300">{{ currentModalItem.description }}</p>
+            <p class="text-sm text-gray-400 mt-2">
+              Source de l'image: {{ currentModalItem.thumbnail || currentModalItem.url || 'Non disponible' }}
+            </p>
           </div>
         </div>
       </div>
@@ -859,7 +877,15 @@ const props = defineProps({
   },
   galleryItems: {
     type: Array,
-    default: () => []
+    default: () => [],
+    validator: (items) => {
+      return items.every(item => {
+        if (item.type === 'image') {
+          return item.thumbnail || item.url; // Vérifie qu'au moins une source d'image est disponible
+        }
+        return true;
+      });
+    }
   }
 });
 
@@ -871,6 +897,7 @@ const itemsPerPage = ref(4);
 const modalOpen = ref(null);
 const currentModalItem = ref(null);
 const currentModalIndex = ref(0);
+const imageLoadError = ref(false);
 
 // Méthode pour gérer le clic sur le bouton play
 const playLatestVideo = () => {
@@ -947,6 +974,11 @@ const updateCarouselPosition = () => {
 };
 
 const openGalleryModal = (item) => {
+  console.log('Opening modal with item:', item); // Log pour déboguer
+  if (!item.thumbnail && !item.url) {
+    console.error('Aucune image disponible pour:', item.title);
+    return;
+  }
   currentModalItem.value = item;
   currentModalIndex.value = props.galleryItems.findIndex(i => i.id === item.id);
   modalOpen.value = true;
@@ -1015,6 +1047,16 @@ function animateOnScroll() {
 // Event Handlers
 const handleResize = () => {
   updateCarouselPosition();
+};
+
+const handleImageError = () => {
+  console.error('Error loading image:', currentModalItem.value?.url);
+  imageLoadError.value = true;
+};
+
+const handleImageLoad = () => {
+  console.log('Image loaded successfully');
+  imageLoadError.value = false;
 };
 
 // Lifecycle Hooks
