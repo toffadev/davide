@@ -841,9 +841,9 @@
           <div class="p-6">
             <h3 class="text-xl font-bold mb-2">{{ currentModalItem.title }}</h3>
             <p v-if="currentModalItem.description" class="text-gray-300">{{ currentModalItem.description }}</p>
-            <p class="text-sm text-gray-400 mt-2">
+            <!-- <p class="text-sm text-gray-400 mt-2">
               Source de l'image: {{ currentModalItem.thumbnail || currentModalItem.url || 'Non disponible' }}
-            </p>
+            </p> -->
           </div>
         </div>
       </div>
