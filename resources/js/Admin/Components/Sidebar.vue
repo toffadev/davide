@@ -4,7 +4,7 @@
     <div class="flex items-center justify-between p-4 border-b border-gray-200">
       <div class="flex items-center space-x-2">
         <i class="fas fa-tachometer-alt text-primary text-2xl"></i>
-        <span class="text-xl font-bold text-dark md:hidden lg:block">AXEL MERRYL</span>
+        <span class="text-xl font-bold text-dark md:hidden lg:block">DNBEATZ</span>
       </div>
     </div>
 
@@ -26,6 +26,20 @@
             $page.component === 'Admin/Pages/MusicReleases' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100']">
         <i class="fas fa-tags"></i>
         <span class="md:hidden lg:block">Musiques</span>
+        </Link>
+
+        <Link href="/admin/productions"
+          :class="['flex items-center space-x-3 p-3 rounded-lg',
+            $page.component === 'Admin/Pages/Productions' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100']">
+        <i class="fas fa-tags"></i>
+        <span class="md:hidden lg:block">Productions</span>
+        </Link>
+
+        <Link href="/admin/purchases"
+          :class="['flex items-center space-x-3 p-3 rounded-lg',
+            $page.component === 'Admin/Pages/Purchases' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100']">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="md:hidden lg:block">Achats</span>
         </Link>
 
         <Link href="/admin/new-project"

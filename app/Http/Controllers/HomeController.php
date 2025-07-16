@@ -7,6 +7,7 @@ use App\Models\ComedyShow;
 use App\Models\Actuality;
 use App\Models\Event;
 use App\Models\MediaGallery;
+use App\Models\Production;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -53,6 +54,20 @@ class HomeController extends Controller
             ->take(8)
             ->get();
 
+        // Récupérer les productions payantes
+        $paidProductions = Production::where('is_visible', true)
+            ->where('type', 'payant')
+            ->orderBy('created_at', 'desc')
+            ->take(4)
+            ->get();
+
+        // Récupérer les productions gratuites
+        $freeProductions = Production::where('is_visible', true)
+            ->where('type', 'gratuit')
+            ->orderBy('created_at', 'desc')
+            ->take(4)
+            ->get();
+
         return Inertia::render('Home', [
             'latestReleases' => [
                 'singles' => $latestSingles,
@@ -61,7 +76,9 @@ class HomeController extends Controller
             'latestComedies' => $latestComedies,
             'latestActualities' => $latestActualities,
             'upcomingEvents' => $upcomingEvents,
-            'galleryItems' => $galleryItems
+            'galleryItems' => $galleryItems,
+            'paidProductions' => $paidProductions,
+            'freeProductions' => $freeProductions
         ]);
     }
 }

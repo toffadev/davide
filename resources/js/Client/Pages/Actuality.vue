@@ -1,19 +1,19 @@
 <template>
     <Head>
-        <title>Axel Meryl - Actualités</title>
+        <title>DNBEATZ - Actualités</title>
     </Head>
 
     <MainLayout>
         <!-- Hero Section -->
-        <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-900 to-gray-900">
+        <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-900 via-blue-800 to-gray-900">
             <div class="max-w-7xl mx-auto text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 animate__animated animate__fadeIn">Toutes les <span class="gradient-text">Actualités</span></h1>
-                <h2 class="text-xl md:text-2xl text-gray-300 mb-8 animate__animated animate__fadeIn animate__delay-1s">Suivez l'actualité d'Axel Meryl : spectacles, sorties, interviews et plus encore</h2>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 animate__animated animate__fadeIn">Toutes les <span class="gradient-text">Actualités</span></h1>
+                <h2 class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto animate__animated animate__fadeIn animate__delay-1s">Suivez l'actualité de DNBEATZ : productions, sorties, collaborations et plus encore</h2>
                 <div class="flex flex-wrap justify-center gap-4 animate__animated animate__fadeInUp animate__delay-1s">
-                    <a href="#articles" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-medium transition-all duration-300 shadow-lg flex items-center">
+                    <a href="#articles" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-blue-500/30 flex items-center">
                         <i class="fas fa-newspaper mr-2"></i> Derniers articles
                     </a>
-                    <a href="#agenda" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full font-medium transition-all duration-300 shadow-lg flex items-center">
+                    <a href="#agenda" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-purple-500/30 flex items-center">
                         <i class="fas fa-calendar-alt mr-2"></i> Agenda
                     </a>
                 </div>
@@ -21,36 +21,37 @@
         </section>
 
         <!-- Featured Article -->
-        <section v-if="featuredActuality" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-3xl font-bold mb-10 text-center animate__animated animate__fadeIn">
+        <section v-if="featuredActuality" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900 relative">
+            <div class="absolute inset-0 bg-pattern opacity-5"></div>
+            <div class="max-w-7xl mx-auto relative z-10">
+                <h2 class="text-3xl font-bold mb-12 text-center animate__animated animate__fadeIn">
                     <i class="fas fa-star text-yellow-400 mr-3"></i>Article à la Une
                 </h2>
-                <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-2xl animate__animated animate__fadeIn animate__delay-1s">
+                <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden shadow-2xl animate__animated animate__fadeIn animate__delay-1s transform hover:scale-[1.01] transition-all duration-300">
                     <div class="md:flex">
                         <div class="md:w-1/2 relative news-overlay">
                             <img :src="featuredActuality.image" 
                                 alt="Featured article" 
                                 class="w-full h-full object-cover news-image">
                             <div class="absolute bottom-0 left-0 right-0 p-8 z-10">
-                                <span class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full">À LA UNE</span>
+                                <span class="bg-blue-600 text-white text-xs px-3 py-1 rounded-full font-medium">À LA UNE</span>
                             </div>
                         </div>
-                        <div class="md:w-1/2 p-8">
+                        <div class="md:w-1/2 p-8 md:p-10">
                             <div class="flex items-center text-sm text-gray-400 mb-4">
                                 <span class="flex items-center"><i class="far fa-calendar-alt mr-2"></i>{{ formatDate(featuredActuality.date) }}</span>
                                 <span class="read-time"><i class="far fa-clock mr-2"></i>{{ estimateReadingTime(featuredActuality.content) }} min de lecture</span>
                             </div>
-                            <h3 class="text-2xl md:text-3xl font-bold mb-4">{{ featuredActuality.title }}</h3>
-                            <p class="text-gray-300 mb-6">{{ truncateText(featuredActuality.content, 250) }}</p>
+                            <h3 class="text-2xl md:text-3xl font-bold mb-4 leading-tight">{{ featuredActuality.title }}</h3>
+                            <p class="text-gray-300 mb-8 leading-relaxed">{{ truncateText(featuredActuality.content, 250) }}</p>
                             
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="px-3 py-1 bg-gray-700 text-gray-200 rounded-full text-xs flex items-center">
+                            <div class="flex flex-wrap gap-2 mb-8">
+                                <span class="px-4 py-1 bg-gray-700 text-gray-200 rounded-full text-xs flex items-center">
                                     <i class="fas fa-tag mr-1"></i> {{ getCategoryLabel(featuredActuality.category) }}
                                 </span>
                             </div>
                             
-                            <a href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-blue-500/30">
+                            <a href="#" class="inline-flex items-center px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-blue-500/30">
                                 Lire l'article complet <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -60,51 +61,52 @@
         </section>
 
         <!-- Articles Section -->
-        <section id="articles" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-800">
-            <div class="max-w-7xl mx-auto">
+        <section id="articles" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-800 to-gray-900 relative">
+            <div class="absolute inset-0 bg-pattern opacity-5"></div>
+            <div class="max-w-7xl mx-auto relative z-10">
                 <div class="text-center mb-16 animate__animated animate__fadeIn">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center">
                         <i class="fas fa-newspaper text-blue-500 mr-3 text-4xl"></i>
                         <span>Dernières Actualités</span>
                     </h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Toute l'actualité récente autour d'Axel Meryl : spectacles, interviews, projets et apparitions.</p>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Toute l'actualité récente autour de DNBEATZ : productions, collaborations, projets et événements.</p>
                 </div>
                 
                 <!-- Category filters -->
-                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <div class="flex flex-wrap justify-center gap-3 mb-16">
                     <button @click="selectedCategory = ''" 
-                            class="px-4 py-2 rounded-full text-sm transition-all duration-300"
-                            :class="selectedCategory === '' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
+                            class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                            :class="selectedCategory === '' ? 'bg-blue-600 text-white shadow-lg' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
                         Tous
                     </button>
                     <button @click="selectedCategory = 'event'" 
-                            class="px-4 py-2 rounded-full text-sm transition-all duration-300"
-                            :class="selectedCategory === 'event' ? 'bg-green-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
+                            class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                            :class="selectedCategory === 'event' ? 'bg-green-600 text-white shadow-lg' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
                         <i class="fas fa-calendar-day mr-1"></i> Événements
                     </button>
                     <button @click="selectedCategory = 'news'" 
-                            class="px-4 py-2 rounded-full text-sm transition-all duration-300"
-                            :class="selectedCategory === 'news' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
+                            class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                            :class="selectedCategory === 'news' ? 'bg-blue-600 text-white shadow-lg' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
                         <i class="fas fa-newspaper mr-1"></i> Actualités
                     </button>
                     <button @click="selectedCategory = 'release'" 
-                            class="px-4 py-2 rounded-full text-sm transition-all duration-300"
-                            :class="selectedCategory === 'release' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
-                        <i class="fas fa-book mr-1"></i> Publications
+                            class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                            :class="selectedCategory === 'release' ? 'bg-indigo-600 text-white shadow-lg' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
+                        <i class="fas fa-music mr-1"></i> Productions
                     </button>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Articles dynamiques avec filtres -->
                     <article v-for="(actuality, index) in filteredActualities" :key="actuality.id" 
-                             class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl overflow-hidden shadow-lg news-card animate__animated animate__fadeIn" 
+                             class="bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl overflow-hidden shadow-xl news-card animate__animated animate__fadeIn" 
                              :class="getDelayClass(index)">
                         <div class="relative news-overlay">
                             <img :src="actuality.image" 
                                 :alt="actuality.title" 
-                                class="w-full h-48 object-cover news-image">
+                                class="w-full h-56 object-cover news-image">
                             <div class="category-badge">
-                                <span class="text-white text-xs px-3 py-1 rounded-full" :class="getCategoryClass(actuality.category)">
+                                <span class="text-white text-xs px-3 py-1 rounded-full font-medium" :class="getCategoryClass(actuality.category)">
                                     {{ getCategoryLabel(actuality.category) }}
                                 </span>
                             </div>
@@ -114,11 +116,11 @@
                                 <span class="flex items-center"><i class="far fa-calendar-alt mr-2"></i>{{ formatDate(actuality.date) }}</span>
                                 <span class="read-time"><i class="far fa-clock mr-2"></i>{{ estimateReadingTime(actuality.content) }} min</span>
                             </div>
-                            <h3 class="font-bold text-xl mb-3">{{ actuality.title }}</h3>
-                            <p class="text-gray-300 text-sm mb-4">{{ truncateText(actuality.content, 120) }}</p>
+                            <h3 class="font-bold text-xl mb-3 leading-tight line-clamp-2">{{ actuality.title }}</h3>
+                            <p class="text-gray-300 text-sm mb-6 leading-relaxed line-clamp-3">{{ truncateText(actuality.content, 120) }}</p>
                             <div class="flex justify-between items-center">
-                                <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center transition-all duration-300">
-                                    Lire plus <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                                <a href="#" class="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center transition-all duration-300 group">
+                                    Lire plus <i class="fas fa-chevron-right ml-1 text-xs group-hover:translate-x-1 transition-transform"></i>
                                 </a>
                                 <div class="flex items-center text-yellow-400 text-sm">
                                     <i class="fas fa-star"></i>
@@ -132,35 +134,36 @@
                     </article>
                 </div>
                 
-                <div v-if="filteredActualities.length === 0" class="text-center py-12 text-gray-400">
-                    <i class="fas fa-search text-5xl mb-4"></i>
+                <div v-if="filteredActualities.length === 0" class="text-center py-16 text-gray-400 bg-gray-800/50 rounded-xl mt-8">
+                    <i class="fas fa-search text-5xl mb-4 opacity-50"></i>
                     <p>Aucun article trouvé dans cette catégorie.</p>
                 </div>
             </div>
         </section>
 
         <!-- Agenda Section -->
-        <section id="agenda" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
-            <div class="max-w-7xl mx-auto">
+        <section id="agenda" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-gray-800 relative">
+            <div class="absolute inset-0 bg-pattern-2 opacity-5"></div>
+            <div class="max-w-7xl mx-auto relative z-10">
                 <div class="text-center mb-16 animate__animated animate__fadeIn">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center">
                         <i class="fas fa-calendar-alt text-purple-500 mr-3 text-4xl"></i>
                         <span>Agenda des Événements</span>
                     </h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Retrouvez toutes les dates à venir : spectacles, signatures, apparitions publiques...</p>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Retrouvez toutes les dates à venir : sessions studio, masterclass, collaborations...</p>
                 </div>
                 
                 <!-- Month selector -->
-                <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <div class="flex flex-wrap justify-center gap-3 mb-16">
                     <button @click="selectedMonth = ''" 
-                            class="px-4 py-2 rounded-full text-sm transition-all duration-300"
-                            :class="selectedMonth === '' ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
+                            class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                            :class="selectedMonth === '' ? 'bg-purple-600 text-white shadow-lg' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
                         Tous les mois
                     </button>
                     <button v-for="(month, index) in availableMonths" :key="index"
                             @click="selectedMonth = month" 
-                            class="px-4 py-2 rounded-full text-sm transition-all duration-300"
-                            :class="selectedMonth === month ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
+                            class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300"
+                            :class="selectedMonth === month ? 'bg-purple-600 text-white shadow-lg' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'">
                         {{ getMonthName(month) }}
                     </button>
                 </div>
@@ -168,26 +171,26 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <!-- Events dynamiques avec filtres -->
                     <div v-for="(event, index) in filteredEvents" :key="event.id" 
-                         class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 shadow-lg flex animate__animated animate__fadeIn hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300" 
+                         class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 shadow-xl flex animate__animated animate__fadeIn hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 transform hover:translate-y-[-2px]" 
                          :class="getDelayClass(index)">
                         <div class="flex-shrink-0 mr-6 text-center">
-                            <div class="text-white rounded-lg py-2 px-4" :class="getEventColorClass(index)">
-                                <div class="text-2xl font-bold">{{ formatEventDay(event.event_date) }}</div>
-                                <div class="text-sm">{{ formatEventMonth(event.event_date) }}</div>
+                            <div class="text-white rounded-lg py-3 px-5 shadow-lg" :class="getEventColorClass(index)">
+                                <div class="text-3xl font-bold">{{ formatEventDay(event.event_date) }}</div>
+                                <div class="text-sm font-medium">{{ formatEventMonth(event.event_date) }}</div>
                             </div>
-                            <div class="mt-2 text-sm text-gray-400">{{ formatEventTime(event.event_date) }}</div>
+                            <div class="mt-3 text-sm text-gray-400 font-medium">{{ formatEventTime(event.event_date) }}</div>
                         </div>
                         <div class="flex-grow">
-                            <h3 class="text-xl font-bold mb-2">{{ event.title }}</h3>
-                            <p class="text-gray-300 mb-3">
+                            <h3 class="text-xl font-bold mb-3 leading-tight">{{ event.title }}</h3>
+                            <p class="text-gray-300 mb-4 leading-relaxed">
                                 <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
                                 {{ event.city }}, {{ event.country }} - {{ event.description }}
                             </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span v-if="event.is_sold_out" class="px-2 py-1 bg-red-700 text-gray-200 rounded-full text-xs flex items-center">
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span v-if="event.is_sold_out" class="px-3 py-1 bg-red-700 text-gray-200 rounded-full text-xs flex items-center font-medium">
                                     <i class="fas fa-ticket-alt mr-1"></i> COMPLET
                                 </span>
-                                <span class="px-2 py-1 bg-gray-700 text-gray-200 rounded-full text-xs flex items-center">
+                                <span class="px-3 py-1 bg-gray-700 text-gray-200 rounded-full text-xs flex items-center font-medium">
                                     <i class="fas fa-city mr-1"></i> {{ event.city }}
                                 </span>
                             </div>
@@ -196,7 +199,7 @@
                                    :href="event.ticket_link" 
                                    target="_blank" 
                                    rel="noopener" 
-                                   class="inline-block px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-full text-sm font-medium transition-all duration-300 text-white text-center">
+                                   class="inline-block px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-full text-sm font-medium transition-all duration-300 text-white text-center shadow-md hover:shadow-purple-500/30">
                                     <i class="fas fa-ticket-alt mr-2"></i> Réserver
                                 </a>
                                 <span v-else class="inline-block px-6 py-2 bg-gray-600 rounded-full text-sm font-medium text-center text-gray-300 cursor-not-allowed">
@@ -207,8 +210,8 @@
                     </div>
                 </div>
                 
-                <div v-if="filteredEvents.length === 0" class="text-center py-12 text-gray-400">
-                    <i class="fas fa-calendar-times text-5xl mb-4"></i>
+                <div v-if="filteredEvents.length === 0" class="text-center py-16 text-gray-400 bg-gray-800/50 rounded-xl mt-8">
+                    <i class="fas fa-calendar-times text-5xl mb-4 opacity-50"></i>
                     <p>Aucun événement prévu pour cette période.</p>
                 </div>
             </div>
@@ -218,7 +221,7 @@
         <!-- <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-800 to-gray-900">
             <div class="max-w-3xl mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-6 animate__animated animate__fadeIn">Restez <span class="gradient-text">informés</span></h2>
-                <p class="text-gray-400 mb-8 animate__animated animate__fadeIn animate__delay-1s">Abonnez-vous à notre newsletter pour recevoir toutes les actualités d'Axel Meryl directement dans votre boîte mail.</p>
+                <p class="text-gray-400 mb-8 animate__animated animate__fadeIn animate__delay-1s">Abonnez-vous à notre newsletter pour recevoir toutes les actualités de DNBEATZ directement dans votre boîte mail.</p>
                 
                 <form @submit.prevent="subscribeNewsletter" class="animate__animated animate__fadeIn animate__delay-2s">
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -309,7 +312,7 @@ const getCategoryLabel = (category) => {
     const labels = {
         'event': 'Événement',
         'news': 'Actualité',
-        'release': 'Publication'
+        'release': 'Production'
     };
     return labels[category] || 'Actualité';
 };
@@ -388,16 +391,19 @@ const subscribeNewsletter = () => {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    text-shadow: 0 2px 15px rgba(59, 130, 246, 0.15);
 }
 
 .news-card {
     transition: all 0.3s ease;
     transform-style: preserve-3d;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .news-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .category-badge {
@@ -435,6 +441,28 @@ const subscribeNewsletter = () => {
 .read-time::before {
     content: '•';
     margin: 0 6px;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bg-pattern-2 {
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* Ajoutez ces classes pour les animations */

@@ -7,7 +7,12 @@ use App\Http\Controllers\Admin\ComedyShowController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MediaGalleryController;
 use App\Http\Controllers\Admin\NewProjectController;
+use App\Http\Controllers\Admin\ProductionController;
+use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\ComedyController;
+use App\Http\Controllers\ProductionController as ClientProductionController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\DownloadController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -46,6 +51,17 @@ Route::get('/actualites', [App\Http\Controllers\ActualityController::class, 'ind
 
 Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index']);
 
+Route::get('/productions', [ClientProductionController::class, 'index'])->name('productions');
+
+// Routes pour Stripe
+Route::post('/create-checkout-session', [StripeController::class, 'createCheckoutSession'])->name('checkout.session');
+Route::get('/success', [StripeController::class, 'success'])->name('stripe.success');
+Route::get('/cancel', [StripeController::class, 'cancel'])->name('stripe.cancel');
+Route::post('/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
+
+// Route pour le téléchargement
+Route::get('/download/beat/{id}', [DownloadController::class, 'downloadBeat'])->name('download.beat');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -78,5 +94,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // Routes pour la galerie média
         Route::resource('media-gallery', MediaGalleryController::class);
+
+        // Routes pour les productions
+        Route::resource('productions', ProductionController::class);
+
+        // Routes pour les achats
+        Route::get('purchases', [PurchaseController::class, 'index'])->name('purchases.index');
+        Route::put('purchases/{purchase}/status', [PurchaseController::class, 'updateStatus'])->name('purchases.update-status');
+        Route::delete('purchases/{purchase}', [PurchaseController::class, 'destroy'])->name('purchases.destroy');
     });
 });

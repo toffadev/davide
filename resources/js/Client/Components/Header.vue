@@ -4,7 +4,7 @@
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
           <Link href="/" class="flex-shrink-0">
-            <span class="text-2xl font-bold gradient-text">AXEL MERYL</span>
+            <span class="text-2xl font-bold gradient-text">DNBEATZ</span>
           </Link>
         </div>
         <div class="hidden md:block">
@@ -16,33 +16,41 @@
             >
               Accueil
             </Link>
-            <Link 
-              href="/biographie" 
-              class="px-3 py-2 rounded-md text-sm font-medium" 
-              :class="[$page.url === '/biographie' ? 'text-white bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800']"
-            >
-              Biographie
-            </Link>
+            
             <Link 
               href="/musique" 
               class="px-3 py-2 rounded-md text-sm font-medium" 
               :class="[$page.url === '/musique' ? 'text-white bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800']"
             >
-              Musique
+              Mes Œuvres
             </Link>
             <Link 
+              href="/productions" 
+              class="px-3 py-2 rounded-md text-sm font-medium" 
+              :class="[$page.url === '/productions' ? 'text-white bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800']"
+            >
+              Store
+            </Link>
+            <!-- <Link 
               href="/evenements" 
               class="px-3 py-2 rounded-md text-sm font-medium" 
               :class="[$page.url === '/evenements' ? 'text-white bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800']"
             >
               Événements
-            </Link>
+            </Link> -->
             <Link 
               href="/actualites" 
               class="px-3 py-2 rounded-md text-sm font-medium" 
               :class="[$page.url === '/actualites' ? 'text-white bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800']"
             >
               Actualités
+            </Link>
+            <Link 
+              href="/biographie" 
+              class="px-3 py-2 rounded-md text-sm font-medium" 
+              :class="[$page.url === '/biographie' ? 'text-white bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800']"
+            >
+              Biographie
             </Link>
             <Link 
               href="/contact" 
@@ -73,33 +81,41 @@
         >
           Accueil
         </Link>
-        <Link 
-          href="/biographie" 
-          class="block px-3 py-2 rounded-md text-base font-medium" 
-          :class="[$page.url === '/biographie' ? 'text-white bg-gray-700' : 'text-gray-300 hover:text-white hover:bg-gray-700']"
-        >
-          Biographie
-        </Link>
+       
         <Link 
           href="/musique" 
           class="block px-3 py-2 rounded-md text-base font-medium" 
           :class="[$page.url === '/musique' ? 'text-white bg-gray-700' : 'text-gray-300 hover:text-white hover:bg-gray-700']"
         >
-          Musique
+          Mes Œuvres
         </Link>
         <Link 
+          href="/productions" 
+          class="block px-3 py-2 rounded-md text-base font-medium" 
+          :class="[$page.url === '/productions' ? 'text-white bg-gray-700' : 'text-gray-300 hover:text-white hover:bg-gray-700']"
+        >
+          Store
+        </Link>
+        <!-- <Link 
           href="/evenements" 
           class="block px-3 py-2 rounded-md text-base font-medium" 
           :class="[$page.url === '/evenements' ? 'text-white bg-gray-700' : 'text-gray-300 hover:text-white hover:bg-gray-700']"
         >
           Événements
-        </Link>
+        </Link> -->
         <Link 
           href="/actualites" 
           class="block px-3 py-2 rounded-md text-base font-medium" 
           :class="[$page.url === '/actualites' ? 'text-white bg-gray-700' : 'text-gray-300 hover:text-white hover:bg-gray-700']"
         >
           Actualités
+        </Link>
+         <Link 
+          href="/biographie" 
+          class="block px-3 py-2 rounded-md text-base font-medium" 
+          :class="[$page.url === '/biographie' ? 'text-white bg-gray-700' : 'text-gray-300 hover:text-white hover:bg-gray-700']"
+        >
+          Biographie
         </Link>
         <Link 
           href="/contact" 

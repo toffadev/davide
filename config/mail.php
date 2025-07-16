@@ -102,9 +102,9 @@ return [
     | Global "From" Address
     |--------------------------------------------------------------------------
     |
-    | You may wish for all emails sent by your application to be sent from
-    | the same address. Here you may specify a name and address that is
-    | used globally for all emails that are sent by your application.
+    | You may wish for all e-mails sent by your application to be sent from
+    | the same address. Here, you may specify a name and address that is
+    | used globally for all e-mails that are sent by your application.
     |
     */
 
@@ -112,5 +112,28 @@ return [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Email Address
+    |--------------------------------------------------------------------------
+    |
+    | This is the email address that will receive administrative notifications
+    | such as new purchases, etc.
+    |
+    */
+
+    'admin_email' => env('ADMIN_EMAIL', env('MAIL_FROM_ADDRESS')),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Markdown Mail Settings
+    |--------------------------------------------------------------------------
+    |
+    | If you are using Markdown based email rendering, you may configure your
+    | theme and component paths here, allowing you to customize the design
+    | of the emails. Or, you may simply stick with the Laravel defaults!
+    |
+    */
 
 ];
